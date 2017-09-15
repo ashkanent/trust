@@ -36,16 +36,23 @@ SLIDES.push({
 
 		// Buttons
 		self.add({
-			id:"btnCheat", type:"Button", x:275, y:463, text_id:"label_cheat", uppercase:true,
+			id:"btnCheat", type:"Button", x:160, y:463, text_id:"label_cheat", uppercase:true,
 			onclick:function(){
 				_.answer = "CHEAT";
 				publish("slideshow/next");
 			}
 		});
 		self.add({
-			id:"btnCooperate", type:"Button", x:495, y:460, text_id:"label_cooperate", uppercase:true,
+			id:"btnCooperate", type:"Button", x:380, y:460, text_id:"label_cooperate", uppercase:true,
 			onclick:function(){
 				_.answer = "COOPERATE";
+				publish("slideshow/next");
+			}
+		});
+		self.add({
+			id:"btnJossie", type:"Button", x:600, y:460, text_id:"label_jossie", uppercase:true,
+			onclick:function(){
+				_.answer = "Jossie";
 				publish("slideshow/next");
 			}
 		});
@@ -80,6 +87,7 @@ SLIDES.push({
 		_hide(o.btmWords); _fadeIn(o.btmWords, 150+600);
 		_hide(o.btnCheat); _fadeIn(o.btnCheat, 150+1200);
 		_hide(o.btnCooperate); _fadeIn(o.btnCooperate, 150+1200);
+		_hide(o.btnJossie); _fadeIn(o.btnJossie, 150+1200);
 
 	},
 	onend: function(self){
@@ -110,6 +118,7 @@ SLIDES.push({
 		// Replace button
 		self.remove("btnCheat");
 		self.remove("btnCooperate");
+		self.remove("btnJossie");
 		self.add({
 			id:"btnNext", type:"Button", x:304, y:481, size:"long",
 			text_id:"oneoff_button_next", 
