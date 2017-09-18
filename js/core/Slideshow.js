@@ -1,4 +1,5 @@
 var SLIDES = [];
+var selectedAnswer = 'Heeeeeeeeeee';
 
 function Slideshow(config){
 
@@ -59,9 +60,42 @@ function Slideshow(config){
 
 	};
 
+	// Go to next slide if correct answer is selected:
+	self.customizedNextSlide = function(){
+
+		// On End?
+		if(self.currentSlide && self.currentSlide.onend){
+			self.currentSlide.onend(self);
+		}
+		console.log('selectedAnswer is: '+selectedAnswer);
+		console.log('self.slideIndex is: '+self.slideIndex);
+		self.slideIndex = 3;
+		// Update the information
+		if(self.slideIndex >= self.slides.length-1) return;
+		if(selectedAnswer == "CORRECT")
+			self.slideIndex++;
+		self.currentSlide = self.slides[self.slideIndex];
+
+		// On Start
+		if(self.currentSlide.onstart){
+			console.log('chkpt 1');
+			self.currentSlide.onstart(self);
+			console.log('chkpt 2');
+		}
+
+		// Send out message!
+		publish("slideshow/slideChange", [self.currentSlide.id]);
+
+	};
+
 	// Subscribe to "next slide" message...
 	subscribe("slideshow/next", function(){
 		self.nextSlide();
+	});
+
+	// Subscribe to "customized next slide" message...
+	subscribe("slideshow/customizedNext", function(){
+		self.customizedNextSlide();
 	});
 
 
