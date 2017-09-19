@@ -70,9 +70,11 @@ function Slideshow(config){
 		console.log('selectedAnswer is: '+selectedAnswer);
 		console.log('self.slideIndex is: '+self.slideIndex);
 		self.slideIndex = 3;
+		if(selectedAnswer == "oneoff2-CHEAT" || selectedAnswer == "oneoff2-COOPERATE" || selectedAnswer == "oneoff2-CORRECT")
+			self.slideIndex = 6;
 		// Update the information
 		if(self.slideIndex >= self.slides.length-1) return;
-		if(selectedAnswer == "CORRECT")
+		if(selectedAnswer.includes("CORRECT"))
 			self.slideIndex++;
 		self.currentSlide = self.slides[self.slideIndex];
 

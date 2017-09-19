@@ -146,6 +146,7 @@ SLIDES.push({
 
 	onend: function(self){
 		console.log('flag 3 - onend');
+		selectedAnswer = 'Heeeeeeeeeee';
 		self.objects.iterated.dehighlightPayoff();
 		self.remove("topWords");
 		self.remove("btmWords");

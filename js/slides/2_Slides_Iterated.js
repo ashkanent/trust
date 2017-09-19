@@ -4,7 +4,7 @@ SLIDES.push({
 	id: "oneoff2",
 
 	onstart: function(self){
-
+		console.log('oneoff2 - flag 1 - onstart');
 		Tournament.resetGlobalVariables();
 
 		// Iterated Simulation
@@ -39,26 +39,28 @@ SLIDES.push({
 			id:"btnCheat", type:"Button", x:160, y:463, text_id:"label_cheat", uppercase:true,
 			onclick:function(){
 				_.answer = "CHEAT";
-				publish("slideshow/next");
+				publish("slideshow/customizedNext");
 			}
 		});
 		self.add({
 			id:"btnCooperate", type:"Button", x:380, y:460, text_id:"label_cooperate", uppercase:true,
 			onclick:function(){
 				_.answer = "COOPERATE";
-				publish("slideshow/next");
+				publish("slideshow/customizedNext");
 			}
 		});
 		self.add({
 			id:"btnJossie", type:"Button", x:600, y:460, text_id:"label_jossie", uppercase:true,
 			onclick:function(){
-				_.answer = "Jossie";
-				publish("slideshow/next");
+				_.answer = "CORRECT";
+				publish("slideshow/customizedNext");
 			}
 		});
 
 	},
 	onend: function(self){
+		console.log('oneoff2 - flag 1 - onend');
+		selectedAnswer = "oneoff2-" + _.answer;
 		//self.remove("labelYou");
 		//self.remove("labelThem");
 	}
@@ -66,7 +68,7 @@ SLIDES.push({
 },{
 
 	onstart: function(self){
-
+		console.log('oneoff2 - flag 2 - onstart');
 		var o = self.objects;
 
 		// Payoff
@@ -91,13 +93,16 @@ SLIDES.push({
 
 	},
 	onend: function(self){
-		self.remove("btmWords");
+		console.log('oneoff2 - flag 2 - onend');
+		selectedAnswer = "oneoff2-" + _.answer;
+		//self.remove("btmWords");
 	}
 
 },{
 
 	onstart: function(self){
-
+		self.remove("btmWords");
+		console.log('oneoff2 - flag 3 - onstart');
 		var o = self.objects;
 
 		// Payoff
@@ -133,6 +138,7 @@ SLIDES.push({
 	},
 
 	onend: function(self){
+		console.log('oneoff2 - flag 3 - onend');
 		self.objects.iterated.dehighlightPayoff();
 		self.remove("topWords");
 		self.remove("btmWords");
